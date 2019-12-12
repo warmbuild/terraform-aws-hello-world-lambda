@@ -1,6 +1,6 @@
 terraform_state = {
-  bucket = "oba707-codetools-play-tf-state"
-  key    = "hello_world_lambda/terraform.tfstate"
+  bucket = "oba-terraform-artifacts-bucket"
+  key    = "hello_world_lambda/terraform-code.tfstate"
 }
 
 namespace = "example"
