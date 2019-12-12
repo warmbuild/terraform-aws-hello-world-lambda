@@ -6,7 +6,6 @@ provider "aws" {
 
 
 terraform {
-  required_version = ">= 0.12.5"
   backend "s3" {
     profile = "saml"
   }
@@ -65,18 +64,18 @@ data "aws_iam_policy_document" "lambda" {
 }
 
 resource "aws_iam_role" "lambda" {
-  name               = module.lambda_label.id
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
+  name               = "${module.lambda_label.id}"
+  assume_role_policy = "${data.aws_iam_policy_document.lambda_assume_role.json}"
 }
 
 resource "aws_iam_policy" "lambda" {
-  name   = module.lambda_label.id
-  policy = data.aws_iam_policy_document.lambda.json
+  name   = "${module.lambda_label.id}"
+  policy = "${data.aws_iam_policy_document.lambda.json}"
 }
 
 resource "aws_iam_role_policy_attachment" "lambda" {
-  role       = aws_iam_role.lambda.name
-  policy_arn = aws_iam_policy.lambda.arn
+  role       = "${aws_iam_role.lambda.name}"
+  policy_arn = "${aws_iam_policy.lambda.arn}"
 }
 
 ////////////////////// LAMBDA FUNCTION:
@@ -89,10 +88,10 @@ data "archive_file" "lambda" {
 
 resource "aws_lambda_function" "lambda" {
   description      = "Hello World Lambda function"
-  filename         = join("", data.archive_file.lambda.*.output_path)
+  filename         = "${join("", data.archive_file.lambda.*.output_path)}"
   function_name    = "hello_world"
-  role             = aws_iam_role.lambda.arn
+  role             = "${aws_iam_role.lambda.arn}"
   handler          = "hello_world.lambda_handler"
-  source_code_hash = join("", data.archive_file.lambda.*.output_base64sha256)
+  source_code_hash = "${join("", data.archive_file.lambda.*.output_base64sha256)}"
   runtime          = "python3.6"
 }
