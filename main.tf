@@ -1,3 +1,10 @@
+provider "aws" {
+  region = var.region
+  shared_credentials_file = "/Users/omegabk/.aws/credentials"
+  profile = "saml"
+}
+
+
 terraform {
   required_version = ">= 0.12.5"
   backend "s3" {
@@ -5,21 +12,18 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "eu-west-1"
-  shared_credentials_file = "~/.aws/credentials"
-  profile = "saml"
-}
 
-data "terraform_remote_state" "state" {
-  backend = "s3"
-  config = {
-    bucket  = var.terraform_state["bucket"]
-    region  = var.region
-    key     = var.terraform_state["key"]
-    encrypt = true
-  }
-}
+
+# data "terraform_remote_state" "state" {
+#   backend = "s3"
+#   profile = "saml"
+#   config = {
+#     bucket  = var.terraform_state["bucket"]
+#     region  = var.region
+#     key     = var.terraform_state["key"]
+#     encrypt = true
+#   }
+# }
 
 data "aws_caller_identity" "current_account_id" {}
 
