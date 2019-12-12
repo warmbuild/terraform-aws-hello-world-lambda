@@ -1,5 +1,5 @@
 terraform_state = {
-  bucket = "937405989913-codetools-play-tf-state"
+  bucket = "oba707-codetools-play-tf-state"
   key    = "hello_world_lambda/terraform.tfstate"
 }
 
@@ -8,5 +8,5 @@ stage     = "dev"
 name      = "hello-world"
 
 tags      = {
-  Owner = "Airwalk Consulting"
+  Owner = "LBNTAG"
 }

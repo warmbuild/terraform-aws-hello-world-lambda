@@ -1,7 +1,10 @@
 variable "terraform_state" {
   description = "Terraform backend state setup for S3"
   type        = map(string)
-  default     = {}
+  default     = {
+    bucket = "oba-terraform-artifacts-bucket"
+    key = "hello_world_lambda/terraform.tfstate"
+  }
 }
 
 variable "region" {
@@ -13,19 +16,19 @@ variable "region" {
 variable "namespace" {
   description = "Namespace"
   type        = string
-  default     = ""
+  default     = "example"
 }
 
 variable "name" {
   description = "Name (e.g. project name)"
   type        = string
-  default     = ""
+  default     = "hello-world"
 }
 
 variable "stage" {
   description = "Stage (e.g. environment)"
   type        = string
-  default     = ""
+  default     = "dev"
 }
 
 variable "attributes" {

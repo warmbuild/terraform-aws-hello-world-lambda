@@ -1,10 +1,13 @@
 terraform {
   required_version = ">= 0.12.5"
-  backend "s3" {}
+  backend "s3" {
+    profile = "saml"
+  }
 }
 
 provider "aws" {
-  region = var.region
+  region = "eu-west-1"
+  profile = "saml"
 }
 
 data "terraform_remote_state" "state" {
