@@ -29,12 +29,12 @@ data "aws_caller_identity" "current_account_id" {}
 
 module "lambda_label" {
   source     = "git::https://github.com/cloudposse/terraform-terraform-label.git"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = ["lambda", var.region]
-  delimiter  = var.delimiter
-  tags       = var.tags
+  namespace  = "example"
+  stage      = "dev"
+  name       = "hello-world"
+  attributes = ["lambda", "eu-west-1"]
+  delimiter  = "-"
+  tags       = {}
 }
 
 ////////////////////// LAMBDA IAM:
