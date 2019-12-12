@@ -1,5 +1,5 @@
 provider "aws" {
-  region = var.region
+  region = "eu-west-1"
   shared_credentials_file = "/Users/omegabk/.aws/credentials"
   profile = "saml"
 }
